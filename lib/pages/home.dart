@@ -108,16 +108,17 @@ class _HomePageState extends State<HomePage> {
                     child: TweenAnimationBuilder(
                         duration: duration,
                         key: ValueKey(activeIndex),
-                        tween: Tween<Offset>(
-                          begin: Offset(0, 20),
-                          end: Offset.zero,
+                        tween: Tween<double>(
+                          begin: 0,
+                          end: 1,
                         ),
                         builder: (context, a, child) {
                           return AnimatedOpacity(
                             duration: duration,
-                            opacity: a.dy != 0 ? 0 : 1,
-                            child: Transform.translate(
-                              offset: a,
+                            opacity: a == 0 ? 0 : 1,
+                            child: Transform.scale(
+                              alignment: Alignment.centerLeft,
+                              scale: a,
                               child: Text(
                                 items[activeIndex].price,
                                 style: Theme.of(context).textTheme.displayMedium!.copyWith(color: AppColors.white, fontSize: 28),
