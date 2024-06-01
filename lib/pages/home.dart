@@ -21,6 +21,8 @@ class _HomePageState extends State<HomePage> {
   PageController controller_2 = PageController();
   int activeIndex = 0;
 
+  List<String> navItems = ["Men", "Women", "Kids", "Collections"];
+
   final duration = const Duration(milliseconds: 1200);
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,7 @@ class _HomePageState extends State<HomePage> {
               duration: duration,
               clipBehavior: Clip.none,
               margin: const EdgeInsets.symmetric(vertical: 80, horizontal: 50),
-              padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 50),
+              padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 50),
               width: Sizing.width(context),
               height: Sizing.height(context),
               decoration: BoxDecoration(
@@ -48,113 +50,166 @@ class _HomePageState extends State<HomePage> {
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(color: AppColors.white.withOpacity(0.3), width: 3),
               ),
-              child: Container(
-                margin: const EdgeInsets.only(top: 80),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.only(right: 80),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ...items.map((e) {
-                            return indicator(e.index == activeIndex, e.index);
-                          }),
-                        ],
+              child: Column(
+                children: [navBar(), SizedBox(height: 50), buttonAndPrice(context)],
+              ),
+            ),
+            shoeSlider(context),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Container buttonAndPrice(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(top: 80),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(right: 80),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ...items.map((e) {
+                  return indicator(e.index == activeIndex, e.index);
+                }),
+              ],
+            ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              textSlider(context),
+              Row(
+                children: [
+                  InkWell(
+                    onTap: () {},
+                    child: AnimatedContainer(
+                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                      duration: duration,
+                      decoration: BoxDecoration(
+                        color: items[activeIndex].main,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: InkWell(
+                        onTap: () {},
+                        child: const Text(
+                          "Add to bag",
+                          style: TextStyle(color: AppColors.white),
+                        ),
                       ),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: Sizing.width(context) * 0.3,
-                          height: 300,
-                          child: PageView.builder(
-                            controller: controller_2,
-                            itemCount: items.length,
-                            scrollDirection: Axis.vertical,
-                            itemBuilder: (c, i) {
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    items[i].title,
-                                    style: Theme.of(context).textTheme.displayLarge!.copyWith(color: AppColors.white),
-                                  ),
-                                  const SizedBox(height: 20),
-                                  Text(
-                                    items[i].desc,
-                                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: AppColors.white),
-                                  ),
-                                ],
-                              );
-                            },
-                          ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(left: 30),
+                    child: TweenAnimationBuilder(
+                        duration: duration,
+                        key: ValueKey(activeIndex),
+                        tween: Tween<Offset>(
+                          begin: Offset(0, 20),
+                          end: Offset.zero,
                         ),
-                        Row(
-                          children: [
-                            InkWell(
-                              onTap: () {},
-                              child: AnimatedContainer(
-                                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                                duration: duration,
-                                decoration: BoxDecoration(
-                                  color: items[activeIndex].main,
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: InkWell(
-                                  onTap: () {},
-                                  child: const Text(
-                                    "Add to bag",
-                                    style: TextStyle(color: AppColors.white),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              margin: const EdgeInsets.only(left: 30),
+                        builder: (context, a, child) {
+                          return AnimatedOpacity(
+                            duration: duration,
+                            opacity: a.dy != 0 ? 0 : 1,
+                            child: Transform.translate(
+                              offset: a,
                               child: Text(
                                 items[activeIndex].price,
                                 style: Theme.of(context).textTheme.displayMedium!.copyWith(color: AppColors.white, fontSize: 28),
                               ),
                             ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+                          );
+                        }),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Row navBar() {
+    return Row(
+      children: [
+        Image.asset(AssetHelper.nike_white),
+        const SizedBox(width: 60),
+        ...navItems.map(
+          (e) => InkWell(
+            onTap: () {},
+            child: Container(
+              margin: const EdgeInsets.only(right: 90),
+              child: Text(e, style: const TextStyle(fontSize: 16, color: AppColors.white)),
             ),
-            Transform.translate(
-              offset: Offset(Sizing.width(context) / 5, 0),
-              child: Container(
-                height: Sizing.height(context),
-                alignment: Alignment.centerRight,
-                width: Sizing.width(context),
-                child: PageView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  controller: controller,
-                  itemCount: items.length,
-                  scrollDirection: Axis.vertical,
-                  itemBuilder: (c, i) {
-                    return AnimatedOpacity(
-                      duration: duration,
-                      opacity: i == activeIndex ? 1 : 0,
-                      child: Transform(
-                        transform: Matrix4.identity()
-                          ..setEntry(3, 2, 0.01)
-                          ..scale(1.0),
-                        child: Image.asset("assets/images/shoe_${i}.png"),
-                      ),
-                    );
-                  },
+          ),
+        ),
+      ],
+    );
+  }
+
+  SizedBox textSlider(BuildContext context) {
+    return SizedBox(
+      width: Sizing.width(context) * 0.3,
+      height: 300,
+      child: PageView.builder(
+        controller: controller_2,
+        itemCount: items.length,
+        scrollDirection: Axis.vertical,
+        itemBuilder: (c, i) {
+          return AnimatedScale(
+            alignment: Alignment.centerLeft,
+            duration: duration,
+            scale: activeIndex == i ? 1 : 0.8,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  items[i].title,
+                  style: Theme.of(context).textTheme.displayLarge!.copyWith(color: AppColors.white),
                 ),
-              ),
+                const SizedBox(height: 20),
+                Text(
+                  items[i].desc,
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: AppColors.white, fontSize: 16),
+                ),
+              ],
             ),
-          ],
+          );
+        },
+      ),
+    );
+  }
+
+  Transform shoeSlider(BuildContext context) {
+    return Transform.translate(
+      offset: Offset(Sizing.width(context) / 5, 0),
+      child: Container(
+        height: Sizing.height(context),
+        alignment: Alignment.centerRight,
+        width: Sizing.width(context),
+        child: PageView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          controller: controller,
+          itemCount: items.length,
+          scrollDirection: Axis.vertical,
+          itemBuilder: (c, i) {
+            return AnimatedOpacity(
+              duration: duration,
+              opacity: i == activeIndex ? 1 : 0,
+              child: Transform(
+                transform: Matrix4.identity()
+                  ..setEntry(3, 2, 0.01)
+                  ..scale(1.0),
+                child: Image.asset("assets/images/shoe_${i}.png"),
+              ),
+            );
+          },
         ),
       ),
     );
@@ -176,9 +231,22 @@ class _HomePageState extends State<HomePage> {
           AnimatedContainer(
             duration: duration,
             height: activeIndex == index ? 120 : 80,
-            width: 4,
-            color: isActive ? AppColors.white : AppColors.white.withOpacity(0.5),
+            width: 6,
             margin: const EdgeInsets.only(right: 25),
+            decoration: BoxDecoration(
+              color: isActive ? AppColors.white : AppColors.white.withOpacity(0.5),
+              borderRadius: index == 0
+                  ? const BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                    )
+                  : index == items.length - 1
+                      ? const BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        )
+                      : null,
+            ),
           ),
           Text(
             "0${index + 1}",
