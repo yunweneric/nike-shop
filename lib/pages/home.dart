@@ -200,10 +200,12 @@ class _HomePageState extends State<HomePage> {
           itemCount: items.length,
           scrollDirection: Axis.vertical,
           itemBuilder: (c, i) {
+            final factor = 1 - i * 0.2;
             return AnimatedOpacity(
               duration: duration,
               opacity: i == activeIndex ? 1 : 0,
               child: Transform(
+                alignment: Alignment.centerLeft,
                 transform: Matrix4.identity()
                   ..setEntry(3, 2, 0.01)
                   ..scale(1.0),
