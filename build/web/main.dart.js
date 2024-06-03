@@ -12009,7 +12009,7 @@ if(r==null)r=14
 s=A.cE(a,B.dg)
 s=s==null?null:s.gcT()
 if(s==null)s=B.ap
-return A.abI(B.CK,B.CQ,B.fw,r*s.a/14)},
+return A.abI(B.CL,B.CQ,B.fw,r*s.a/14)},
 w6:function w6(){},
 yG:function yG(a,b){this.a=a
 this.b=b},
@@ -40627,7 +40627,7 @@ s.b2()}}
 A.P3.prototype={
 F(){return"ButtonTextTheme."+this.b}}
 A.Aj.prototype={
-gdt(){switch(0){case 0:case 1:return B.CL}},
+gdt(){switch(0){case 0:case 1:return B.CM}},
 gcP(){switch(0){case 0:case 1:return B.Jg}},
 j(a,b){var s=this
 if(b==null)return!1
@@ -62854,7 +62854,7 @@ s=$.fs()[o.f]
 r=A.qP(20)
 q=new A.bU(A.av(B.c.aG(76.5),255,255,255),3,B.L,-1)
 p=t.F
-return new A.ve(A.Ot(A.FH(B.dh,A.a([A.Ot(A.PL(A.a([o.a6m(),A.mL(n,50,n),o.a0P(a)],p),B.bi),B.v,new A.es(s.f,n,new A.da(q,q,q,q),r,n,n,B.aL),B.aZ,m.a.b,B.CP,B.CO,i.a.a),o.Ol(a)],p),B.v,B.eA),B.v,new A.es(j.e,B.xx,n,n,n,n,B.aL),B.aZ,k.a.b,n,n,l.a.a),n)},
+return new A.ve(A.Ot(A.FH(B.dh,A.a([A.Ot(A.PL(A.a([o.a6m(),A.mL(n,50,n),o.a0P(a)],p),B.bi),B.v,new A.es(s.f,n,new A.da(q,q,q,q),r,n,n,B.aL),B.aZ,m.a.b,B.CK,B.CP,i.a.a),o.Ol(a)],p),B.v,B.eA),B.v,new A.es(j.e,B.xx,n,n,n,n,B.aL),B.aZ,k.a.b,n,n,l.a.a),n)},
 a0P(a){var s,r,q,p,o,n=this,m=null,l=$.fs()
 l=A.jL(m,A.PL(A.Q(new A.a2(l,new A.a3d(n),A.Z(l).h("a2<1,l>")),!0,t.l7),B.bN),B.v,m,m,m,m,m,B.CH,m,m,m,m)
 s=n.a7C(a)
@@ -62863,7 +62863,7 @@ q=n.f
 r=r[q]
 p=A.qP(5)
 o=t.F
-return A.jL(m,A.oQ(A.a([l,A.PL(A.a([s,A.oQ(A.a([A.tk(!1,!0,A.Ot(A.tk(!1,!0,B.Qh,m,!0,m,m,m,m,m,m,m,m,m,new A.a3e(),m,m,m,m),B.v,new A.es(r.e,m,m,p,m,m,B.aL),B.aZ,m,m,B.CM,m),m,!0,m,m,m,m,m,m,m,m,m,new A.a3f(),m,m,m,m),A.jL(m,new A.pr(new A.ap(0,1,t.Y),new A.a3g(n),B.X,B.aZ,m,new A.ds(q,t.f3),t.HN),B.v,m,m,m,m,m,B.CN,m,m,m,m)],o),B.bi,B.bu,B.bv),new A.BK(A.a([new A.k2("https://github.com/yunweneric/","github","Github"),new A.k2("https://twitter.com/yunweneric","x","X"),new A.k2("https://www.linkedin.com/in/yunweneric","linkedIn","LinkedIn")],t.hV),m)],o),B.bN)],o),B.bN,B.bu,B.bv),B.v,m,m,m,m,m,B.CJ,m,m,m,m)},
+return A.jL(m,A.oQ(A.a([l,A.PL(A.a([s,A.oQ(A.a([A.tk(!1,!0,A.Ot(A.tk(!1,!0,B.Qh,m,!0,m,m,m,m,m,m,m,m,m,new A.a3e(),m,m,m,m),B.v,new A.es(r.e,m,m,p,m,m,B.aL),B.aZ,m,m,B.CN,m),m,!0,m,m,m,m,m,m,m,m,m,new A.a3f(),m,m,m,m),A.jL(m,new A.pr(new A.ap(0,1,t.Y),new A.a3g(n),B.X,B.aZ,m,new A.ds(q,t.f3),t.HN),B.v,m,m,m,m,m,B.CO,m,m,m,m)],o),B.bi,B.bu,B.bv),new A.BK(A.a([new A.k2("https://github.com/yunweneric/","github","Github"),new A.k2("https://twitter.com/yunweneric","x","X"),new A.k2("https://www.linkedin.com/in/yunweneric","linkedIn","LinkedIn")],t.hV),m)],o),B.bN)],o),B.bN,B.bu,B.bv),B.v,m,m,m,m,m,B.CJ,m,m,m,m)},
 a6m(){var s=A.a([A.acY("assets/icons/nike_white.png"),B.KK],t.F),r=this.r
 B.b.v(s,new A.a2(r,new A.a3j(),A.Z(r).h("a2<1,l>")))
 return A.oQ(s,B.bi,B.bu,B.bv)},
@@ -62924,7 +62924,7 @@ $S:375}
 A.a3k.prototype={
 $2(a,b){var s=b===this.a.f?1:0,r=new A.aP(new Float64Array(16))
 r.cD()
-r.aK(1.4)
+r.aK(1.2)
 return new A.l9(A.a02(B.Z,A.acY("assets/images/shoe_"+b+".png"),null,r,!0),s,B.X,B.aZ,null,null)},
 $S:376}
 A.a3c.prototype={
@@ -69539,13 +69539,13 @@ B.CG=new A.aZ(0,0,25,0)
 B.CH=new A.aZ(0,0,80,0)
 B.CI=new A.aZ(0,0,90,0)
 B.CJ=new A.aZ(0,80,0,0)
-B.CK=new A.aZ(12,8,12,8)
-B.CL=new A.aZ(16,0,16,0)
-B.CM=new A.aZ(20,10,20,10)
-B.CN=new A.aZ(30,0,0,0)
+B.CK=new A.aZ(100,80,100,80)
+B.CL=new A.aZ(12,8,12,8)
+B.CM=new A.aZ(16,0,16,0)
+B.CN=new A.aZ(20,10,20,10)
+B.CO=new A.aZ(30,0,0,0)
 B.fw=new A.aZ(4,0,4,0)
-B.CO=new A.aZ(50,30,50,30)
-B.CP=new A.aZ(50,80,50,80)
+B.CP=new A.aZ(50,30,50,30)
 B.CQ=new A.aZ(8,0,8,0)
 B.CR=new A.rF(null)
 B.CS=new A.rH(0,"noOpinion")

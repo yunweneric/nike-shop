@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
             AnimatedContainer(
               duration: duration,
               clipBehavior: Clip.none,
-              margin: const EdgeInsets.symmetric(vertical: 80, horizontal: 50),
+              margin: const EdgeInsets.symmetric(vertical: 80, horizontal: 100),
               padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 50),
               width: Sizing.width(context),
               height: Sizing.height(context),
@@ -222,7 +222,7 @@ class _HomePageState extends State<HomePage> {
               opacity: i == activeIndex ? 1 : 0,
               child: Transform(
                 alignment: Alignment.center,
-                transform: Matrix4.identity()..scale(1.4),
+                transform: Matrix4.identity()..scale(1.2),
                 child: Image.asset("assets/images/shoe_${i}.png"),
               ),
             );
