@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_3d_nike_shop/pages/data.dart';
+import 'package:flutter_3d_nike_shop/pages/follow.dart';
 import 'package:flutter_3d_nike_shop/utils/asset_helper.dart';
 import 'package:flutter_3d_nike_shop/utils/colors.dart';
 import 'package:flutter_3d_nike_shop/utils/sizing.dart';
@@ -37,6 +40,7 @@ class _HomePageState extends State<HomePage> {
           image: const DecorationImage(image: AssetImage(AssetHelper.lines), fit: BoxFit.cover),
         ),
         child: Stack(
+          clipBehavior: Clip.none,
           children: [
             AnimatedContainer(
               duration: duration,
@@ -108,27 +112,38 @@ class _HomePageState extends State<HomePage> {
                     child: TweenAnimationBuilder(
                         duration: duration,
                         key: ValueKey(activeIndex),
-                        tween: Tween<double>(
-                          begin: 0,
-                          end: 1,
-                        ),
-                        builder: (context, a, child) {
-                          return AnimatedOpacity(
-                            duration: duration,
-                            opacity: a == 0 ? 0 : 1,
-                            child: Transform.scale(
-                              alignment: Alignment.centerLeft,
-                              scale: a,
-                              child: Text(
-                                items[activeIndex].price,
-                                style: Theme.of(context).textTheme.displayMedium!.copyWith(color: AppColors.white, fontSize: 28),
+                        tween: Tween<double>(begin: 0.0, end: 1.0),
+                        builder: (context, value, child) {
+                          return Stack(
+                            children: [
+                              if (activeIndex > 0 && activeIndex < items.length - 1)
+                                Opacity(
+                                  opacity: 1 - value,
+                                  child: Transform.translate(
+                                    offset: Offset(50 * value, 0.0),
+                                    child: Text(
+                                      items[activeIndex - 1].price,
+                                      style: Theme.of(context).textTheme.displayMedium!.copyWith(color: AppColors.white, fontSize: 28),
+                                    ),
+                                  ),
+                                ),
+                              Opacity(
+                                opacity: value,
+                                child: Transform.translate(
+                                  offset: Offset(-50 * (1 - value), 0.0),
+                                  child: Text(
+                                    items[activeIndex].price,
+                                    style: Theme.of(context).textTheme.displayMedium!.copyWith(color: AppColors.white, fontSize: 28),
+                                  ),
+                                ),
                               ),
-                            ),
+                            ],
                           );
                         }),
                   ),
                 ],
-              )
+              ),
+              Follow(activeIndex: activeIndex)
             ],
           ),
         ],
@@ -189,26 +204,25 @@ class _HomePageState extends State<HomePage> {
 
   Transform shoeSlider(BuildContext context) {
     return Transform.translate(
-      offset: Offset(Sizing.width(context) / 5, 0),
+      offset: Offset(Sizing.width(context) / 2.3, 0),
       child: Container(
+        clipBehavior: Clip.none,
         height: Sizing.height(context),
         alignment: Alignment.centerRight,
-        width: Sizing.width(context),
+        width: Sizing.width(context) / 2,
         child: PageView.builder(
+          clipBehavior: Clip.none,
           physics: const NeverScrollableScrollPhysics(),
           controller: controller,
           itemCount: items.length,
           scrollDirection: Axis.vertical,
           itemBuilder: (c, i) {
-            final factor = 1 - i * 0.2;
             return AnimatedOpacity(
               duration: duration,
               opacity: i == activeIndex ? 1 : 0,
               child: Transform(
-                alignment: Alignment.centerLeft,
-                transform: Matrix4.identity()
-                  ..setEntry(3, 2, 0.01)
-                  ..scale(1.0),
+                alignment: Alignment.center,
+                transform: Matrix4.identity()..scale(1.4),
                 child: Image.asset("assets/images/shoe_${i}.png"),
               ),
             );
@@ -253,7 +267,9 @@ class _HomePageState extends State<HomePage> {
           ),
           Text(
             "0${index + 1}",
-            style: Theme.of(context).textTheme.displaySmall!.copyWith(color: AppColors.white),
+            style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                  color: isActive ? AppColors.white : AppColors.white.withOpacity(0.5),
+                ),
           ),
         ],
       ),
