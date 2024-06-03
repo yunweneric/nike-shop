@@ -7,9 +7,9 @@ flutter pub get
 flutter run
 ```
 
-- [Figma File ](<https://www.figma.com/design/Zwd79BDhZLub76X9pI1l2T/Car-Rental-Website-Animation-(Community)?m=auto&t=hHBxtNaDzD3pcYA9-6>)
+- [Figma File ](<https://www.figma.com/design/yog6rgpR041fByY9ygaVCE/Nike-Landing-Page-Concept-(Community)?node-id=1-46&t=CdDmMrtrHm4SESwf-0>)
 
-- [Demo Link](https://flutter-car-rental.netlify.app/)
+- [Demo Link](https://flutternikeshop.netlify.app/)
 
 A few resources to get you started if this is your first Flutter project:
 
