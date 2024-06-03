@@ -1,6 +1,6 @@
 ### Getting Started
 
-An amazing UI Design from figma community. Done with Flutter
+An amazing UI Design from figma community. Done with Flutter.
 
 ```bash
 flutter pub get
